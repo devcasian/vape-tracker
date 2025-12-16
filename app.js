@@ -123,6 +123,20 @@ window.saveComment = (id, text) => {
     else noteBtn.classList.remove('has-note');
 };
 
+// --- THEME LOGIC ---
+function initTheme() {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'light') {
+        document.body.classList.add('light-theme');
+    }
+}
+
+window.toggleTheme = () => {
+    document.body.classList.toggle('light-theme');
+    const isLight = document.body.classList.contains('light-theme');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+};
+
 window.setFilter = (filterType) => {
     currentFilter = filterType;
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -189,6 +203,7 @@ window.performImport = () => {
 };
 
 searchInput.addEventListener('input', render);
+initTheme();
 render();
 
 // --- SMART HEADER LOGIC ---
