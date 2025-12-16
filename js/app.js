@@ -191,8 +191,23 @@ window.performImport = () => {
 searchInput.addEventListener('input', render);
 render();
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
-        .then(() => console.log('Service Worker Registered'))
-        .catch(err => console.log('SW Failed:', err));
-}
+// --- SMART HEADER LOGIC ---
+let lastScrollTop = 0;
+const header = document.querySelector('.sticky-header');
+const headerHeight = header.offsetHeight;
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > lastScrollTop && scrollTop > headerHeight) {
+        // Scroll Down
+        header.classList.add('header-hidden');
+    } else {
+        // Scroll Up
+        header.classList.remove('header-hidden');
+    }
+    
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+}, { passive: true });
+
+// Register Service Worker for PWA

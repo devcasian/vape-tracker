@@ -1,9 +1,12 @@
-const CACHE_NAME = 'vape-tracker-v1';
+const CACHE_NAME = 'vape-tracker-v2';
 const ASSETS = [
     './',
     './index.html',
     './manifest.json',
-    './icon.svg'
+    './assets/icon.svg',
+    './css/style.css',
+    './js/app.js',
+    './js/data.js'
 ];
 
 self.addEventListener('install', (e) => {
