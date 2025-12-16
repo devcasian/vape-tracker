@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vape Tracker Pro</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#121212">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sticky-header">
+    <div style="max-width: 900px; margin: 0 auto; padding: 0 15px;">
+        <input type="text" class="search-box" id="searchInput" placeholder="Поиск (вкус, №, состав)...">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="setFilter('all')">Все</button>
+            <button class="tab-btn" onclick="setFilter('fav')">Избранное</button>
+            <button class="tab-btn" onclick="setFilter('tried')">Пробовал</button>
+        </div>
+    </div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="settings-section">
+    <div class="settings-title" onclick="toggleSettings()">⚙ Настройки и Резервное копирование</div>
+    <div class="data-controls" id="dataControls">
+        <p style="margin-top:0; font-size:0.9em; color:#888;">Ваши данные хранятся только в этом браузере. Сохраните "код" ниже, чтобы перенести данные на другое устройство.</p>
+        
+        <div class="btn-group">
+            <button class="action-btn" onclick="showExport()">Получить мой код (Экспорт)</button>
+            <button class="action-btn" onclick="showImport()">Ввести код (Импорт)</button>
+        </div>
+        
+        <textarea id="ioTextarea" class="data-io-area" readonly placeholder="Здесь появится ваш код..."></textarea>
+        <button id="confirmImportBtn" class="action-btn primary" style="display:none; margin-top:10px;" onclick="performImport()">Применить код</button>
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
